@@ -23,7 +23,7 @@
 // Method 2
 const showKeyCodes = (e) => {
   const insert = document.querySelector("#insert");
-  const para = document.querySelector("p");
+  insert.innerHTML = " ";
 
   const keysInfo = {
     key: e.key,
@@ -50,7 +50,6 @@ const showKeyCodes = (e) => {
 
     console.log(div);
   }
-  para.textContent = " ";
 };
 
 window.addEventListener("keydown", showKeyCodes, false);
