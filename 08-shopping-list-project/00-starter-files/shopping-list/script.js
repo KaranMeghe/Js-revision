@@ -32,6 +32,10 @@ const createIcon = (className) => {
 const createButton = (className) => {
   const button = document.createElement("button");
   button.classList = className;
+
+  const icon = createIcon("fa-solid fa-xmark");
+
+  button.appendChild(icon);
   return button;
 };
 
@@ -60,9 +64,6 @@ const onSubmit = (e) => {
     itemList.appendChild(item);
 
     const button = createButton("remove-item btn-link text-red");
-    const i = createIcon("fa-solid fa-xmark");
-
-    button.appendChild(i);
     item.appendChild(button);
   }
   formInput.value = "";
