@@ -81,3 +81,11 @@ const onSubmit = (e) => {
 
 // Event Listner
 form.addEventListener("submit", onSubmit, false);
+clearBtn.addEventListener("click", () => {
+  itemList.innerHTML = "";
+
+  if (filter.style.display === "block" && clearBtn.style.display === "block") {
+    filter.style.display = "none";
+    clearBtn.style.display = "none";
+  }
+});
