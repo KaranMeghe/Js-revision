@@ -1,44 +1,59 @@
-// On Page Load
+// wait for entire page to get load.
+// Whenever we put script tag in head element .js file get executed before it reach to body element so it dosent know about abything about it so in that case is to use "load "event. then it will make entire page load
+//  Load Event
+
 // window.onload = function () {
-//   document.querySelector('h1').textContent = 'Hello World';
+//   document.querySelector("h1").textContent = "Hello World";
 // };
 
-window.addEventListener('load', () => console.log('Page Loaded'));
+//  Load Event
+// window.addEventListener(
+//   "load",
+//   () => (document.querySelector("h1").textContent = "Hello Word")
+// );
 
-// On DOM Load
-window.addEventListener('DOMContentLoaded', () => console.log('DOM Loaded'));
+// window.addEventListener("load", () =>
+//   console.log(
+//     "Load: it will run after the DOMContentLoaded event beacuse it will wait for entire page to get load first"
+//   )
+// );
 
-console.log('Run me');
+// // DOMContentLoaded()
+// window.addEventListener("DOMContentLoaded", () =>
+//   console.log(
+//     "DOM Loaded: will run before load' because it running only specific DOM elemnt and not the whole page "
+//   )
+// );
 
-// Resize Event
-window.addEventListener('resize', () => {
-  document.querySelector(
-    'h1'
-  ).innerText = `Resized to ${window.innerWidth} x ${window.innerHeight}`;
-});
+// console.log(
+//   "Run: it will run before both of them above because we are not chosing any dom element here "
+// );
 
-// Scroll Event
-window.addEventListener('scroll', () => {
+// Exception here is defer attribute. it will defer js code from running untill it can run .
+{
+  /* <script src="script.js" defer></script> */
+}
+
+// Resize window event
+
+// scroll event
+window.addEventListener("scroll", () => {
   console.log(`Scrolled: ${window.scrollX} x ${window.scrollY}`);
 
   if (window.scrollY > 70) {
-    document.body.style.backgroundColor = 'black';
-    document.body.style.color = 'white';
+    document.body.style.backgroundColor = "red";
+    document.body.style.color = "white";
   } else {
-    document.body.style.backgroundColor = 'white';
-    document.body.style.color = 'black';
+    document.body.style.background = "white";
+    document.body.style.color = "black";
   }
 });
 
-// Focus & Blur Events
-window.addEventListener('focus', () => {
-  document.querySelectorAll('p').forEach((p) => {
-    p.style.color = 'blue';
-  });
+// focus and blur
+window.addEventListener("focus", () => {
+  document.querySelectorAll("p").forEach((p) => (p.style.color = "brown"));
 });
 
-window.addEventListener('blur', () => {
-  document.querySelectorAll('p').forEach((p) => {
-    p.style.color = 'black';
-  });
+window.addEventListener("blur", () => {
+  document.querySelectorAll("p").forEach((p) => (p.style.color = "black"));
 });
