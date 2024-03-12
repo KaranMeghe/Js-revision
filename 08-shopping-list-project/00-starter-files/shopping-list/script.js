@@ -82,15 +82,24 @@ const onSubmit = (e) => {
 };
 
 // clear all items
-const clearItems = () => {
+const clearItems = (e) => {
   itemList.innerHTML = "";
 
   if (filter.style.display === "block" && clearBtn.style.display === "block") {
     filter.style.display = "none";
     clearBtn.style.display = "none";
   }
+  e.stopPropagation();
+};
+
+// Remove single Element (event delegation)
+const removeItem = (e) => {
+  if (e.target.parentElement.classList.contains("remove-item")) {
+    return e.target.parentElement.parentElement.remove();
+  }
 };
 
 // Event Listner
 form.addEventListener("submit", onSubmit, false);
 clearBtn.addEventListener("click", clearItems, false);
+itemList.addEventListener("click", removeItem, false);
