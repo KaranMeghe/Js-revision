@@ -43,6 +43,8 @@ const onSubmit = (e) => {
   // prevent default behaviour of the form
   e.preventDefault();
   let newItem = formInput.value;
+  let capitalize = newItem.charAt(0).toUpperCase() + newItem.slice(1);
+  newItem = capitalize;
 
   // Validate input
   if (newItem === "") {
@@ -79,13 +81,16 @@ const onSubmit = (e) => {
   }
 };
 
-// Event Listner
-form.addEventListener("submit", onSubmit, false);
-clearBtn.addEventListener("click", () => {
+// clear all items
+const clearItems = () => {
   itemList.innerHTML = "";
 
   if (filter.style.display === "block" && clearBtn.style.display === "block") {
     filter.style.display = "none";
     clearBtn.style.display = "none";
   }
-});
+};
+
+// Event Listner
+form.addEventListener("submit", onSubmit, false);
+clearBtn.addEventListener("click", clearItems, false);
