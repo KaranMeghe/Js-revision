@@ -6,10 +6,6 @@ const addItemBtn = document.querySelector(".btn");
 const filter = document.querySelector(".filter input");
 const clearBtn = document.querySelector("#clear");
 
-// Initially hide filter input and clear button
-filter.style.display = "none";
-clearBtn.style.display = "none";
-
 // warning message
 const warningMessage = () => {
   const warningText = document.createElement("p");
@@ -71,31 +67,36 @@ const onSubmit = (e) => {
   formInput.value = "";
 
   // toggle filter and clear all button only when user add item to list
-  if (
-    newItem !== "" &&
-    filter.style.display === "none" &&
-    clearBtn.style.display === "none"
-  ) {
+  if (newItem !== "") {
+    filter.style.display = "block";
+    clearBtn.style.display = "block";
+  }
+};
+
+// Check Ui
+const checkUi = () => {
+  const items = document.querySelectorAll("li");
+  if (items.length === 0) {
+    filter.style.display = "none";
+    clearBtn.style.display = "none";
+  } else {
     filter.style.display = "block";
     clearBtn.style.display = "block";
   }
 };
 
 // clear all items
-const clearItems = (e) => {
+const clearItems = () => {
   itemList.innerHTML = "";
-
-  if (filter.style.display === "block" && clearBtn.style.display === "block") {
-    filter.style.display = "none";
-    clearBtn.style.display = "none";
-  }
-  e.stopPropagation();
+  checkUi();
+  //   e.stopPropagation();
 };
 
 // Remove single Element (event delegation)
 const removeItem = (e) => {
   if (e.target.parentElement.classList.contains("remove-item")) {
-    return e.target.parentElement.parentElement.remove();
+    e.target.parentElement.parentElement.remove();
+    checkUi();
   }
 };
 
@@ -103,3 +104,6 @@ const removeItem = (e) => {
 form.addEventListener("submit", onSubmit, false);
 clearBtn.addEventListener("click", clearItems, false);
 itemList.addEventListener("click", removeItem, false);
+
+console.dir(itemList);
+checkUi();
