@@ -129,7 +129,8 @@ const checkUi = () => {
 const clearItems = () => {
   itemList.innerHTML = "";
   checkUi();
-  //   e.stopPropagation();
+  // Clear from local storage
+  localStorage.removeItem("items");
 };
 
 // onClick Item
